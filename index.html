@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barra UV Animada - Sol bajo control</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Bloqueo total UV</h1>
+            <h2 class="subtitle" hidden>Sol bajo control</h2>
+        </div>
+
+        <div class="uv-display">
+            <div class="uv-value" id="uvValue">0.0</div>
+            <div class="uv-level" id="uvLevel">Bajo</div>
+        </div>
+
+        <div class="uv-bar-container">
+            <div class="uv-bar">
+                <div class="uv-fill" id="uvFill"></div>
+            </div>
+            <div class="uv-labels">
+                <span class="uv-label">BAJO</span>
+                <span class="uv-label">ALTO</span>
+                <span class="uv-label">EXTREMO</span>
+            </div>
+            <div class="uv-ranges">
+                <span class="uv-range">0-2</span>
+                <span class="uv-range">3-5</span>
+                <span class="uv-range">6-7</span>
+                <span class="uv-range">8-10</span>
+                <span class="uv-range">11+</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="input-group">
+                <label for="latInput">Latitud:</label>
+                <input type="number" id="latInput" step="0.0001" value="-12.0464" placeholder="Ej: -12.0464">
+            </div>
+            
+            <div class="input-group">
+                <label for="lngInput">Longitud:</label>
+                <input type="number" id="lngInput" step="0.0001" value="-77.0428" placeholder="Ej: -77.0428">
+            </div>
+
+            <button class="btn" onclick="obtenerRadiacion()">🌞 Consultar Radiación UV</button>
+            <!-- <button class="btn" onclick="usarUbicacionActual()">📍 Usar Mi Ubicación</button> -->
+            <!-- <button class="btn" onclick="verPronostico()">📊 Ver Pronóstico</button> -->
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                Consultando datos de radiación...
+            </div>
+
+            <div id="error" class="error" style="display: none;"></div>
+            
+            <div id="alertsContainer" class="alerts-container"></div>
+            
+            <div id="pronosticoContainer" style="margin-top: 20px; display: none;">
+                <h3 style="color: #333; margin-bottom: 15px;">📊 Pronóstico UV próximas horas</h3>
+                <div id="pronosticoContent"></div>
+            </div>
+            
+            <div class="coordinates" id="coordinates" hidden>
+                📍 Lima, Perú • Lat: -12.0464, Lng: -77.0428
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
